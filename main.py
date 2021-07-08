@@ -1,62 +1,170 @@
-from tkinter import *
-from tkinter import ttk
+import tkinter as tk
+from tkinter import font as tkfont
 
-# Create a variable to store the account balance
-savings_balance = 0
+# ***************************************************************************#
 
-# Create a function that will update the balance.
-def update_balance():
-    global savings_balance
-    deposit_amount = amount.get()
-    savings_balance += deposit_amount
-    total_balance = savings_balance
-    account_details.set("Savings: ${:.2f}\nTotal Balance: ${:.2f}".format(savings_balance, total_balance))
-    amount.set("")
+random_text = "sEkc beASt"
 
-root = Tk()
-root.title("Goal Tracker")
+"""creating a list of positive integers greater than 1 and less than 10"""
+integer_list = []
+for i in range(10):
+    if i > 1:
+        integer_list.append(i)
 
-# Create and set the message text variable
-message_text = StringVar()
-message_text.set("Welcome! You can deposit or withdraw money and see your progress towards your goals.")
-
-# Create and pack the message label
-message_label = ttk.Label(root, textvariable=message_text, wraplength=250)
-message_label.grid(row=0, column=0, columnspan=2, padx=10, pady=10)
-
-# Create the PhotoImage and label to hold it
-neutral_image = PhotoImage(file="C:\\Users\\mercador2\\Desktop")
-image_label = ttk.Label(root, image=neutral_image)
-image_label.grid(row=1, column=0, columnspan=2, padx=10, pady=10)
-
-# Create and set the account details variable
-account_details = StringVar()
-account_details.set("Savings: $0 \nTotal balance: $0")
-
-# Create the details label and pack it into the GUI
-details_label = ttk.Label(root, textvariable=account_details)
-details_label.grid(row=2, column=0, columnspan=2, padx=10, pady=10)
-
-# Create a label for the account combobox
+# ***************************************************************************#
 
 
+class SampleApp(tk.Tk):
+
+    def __init__(self, *args, **kwargs):
+        tk.Tk.__init__(self, *args, **kwargs)
+
+        self.title_font = tkfont.Font(family='Helvetica', size=10, weight="bold", slant="italic")
+
+        # the container is where we'll stack a bunch of frames
+        # on top of each other, then the one we want visible
+        # will be raised above the others
+        container = tk.Frame(self)
+        container.pack(side="top", fill="both", expand=True)
+        container.grid_rowconfigure(0, weight=1)
+        container.grid_columnconfigure(0, weight=1)
+
+        self.frames = {}
+        for F in (StartPage, PageOne, PageTwo, PageThree, PageFour, PageFive, PageSix, PageSeven):
+            page_name = F.__name__
+            frame = F(parent=container, controller=self)
+            self.frames[page_name] = frame
+
+            # put all of the pages in the same location;
+            # the one on the top of the stacking order
+            # will be the one that is visible.
+            frame.grid(row=0, column=0, sticky="nsew")
+
+        self.show_frame("StartPage")
+
+    def show_frame(self, page_name):
+        """Show a frame for the given page name"""
+        frame = self.frames[page_name]
+        frame.tkraise()
 
 
-# Create a label for the amount field and pack it into the GUI
-amount_label = ttk.Label(root, text="Amount:")
-amount_label.grid(row=3, column=0, padx=10, pady=3)
+# ***************************************************************************#
 
-# Create a variable to store the amount
-amount = DoubleVar()
-amount.set("")
+class StartPage(tk.Frame):
 
-# Create an entry to type in amount
-amount_entry = ttk.Entry(root, textvariable=amount)
-amount_entry.grid(row=5, column=1, padx=10, pady=3)
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
 
-# Create a submit button
-submit_button = ttk.Button(root, text="Submit", command=update_balance)
-submit_button.grid(row=4, column=0, columnspan=2, padx=10, pady=10)
+        # Create the intro label
+        intro_label = tk.Label(self, text="Rojan's Math Test")
+        intro_label.pack(side="top", fill="x", pady=10)
 
-# Run the mainloop
-root.mainloop()
+        # Intro Label to introduce the student
+        message_text = "Welcome! This is my maths test. Try it out for yourself!"
+        message_label = tk.Label(self, text=message_text)
+        message_label.pack(padx=10, pady=5, side="top")
+
+        # Button to
+        button1 = tk.Button(self, text="Play", command=lambda: controller.show_frame("PageOne"))
+        button1.pack()
+
+
+# ***************************************************************************#
+
+class PageOne(tk.Frame):
+
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
+        label = tk.Label(self, text="Question One", font=controller.title_font)
+        label.pack(side="top", fill="x", pady=10)
+        button = tk.Button(self, text="Next Question", command=lambda: controller.show_frame("PageTwo"))
+        button.pack()
+
+
+# ***************************************************************************#
+
+class PageTwo(tk.Frame):
+
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
+        label = tk.Label(self, text="Question Two", font=controller.title_font)
+        label.pack(side="top", fill="x", pady=10)
+        button = tk.Button(self, text="Next Question", command=lambda: controller.show_frame("PageThree"))
+        button.pack()
+
+
+# ***************************************************************************#
+
+class PageThree(tk.Frame):
+
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
+        label = tk.Label(self, text="Question Three", font=controller.title_font)
+        label.pack(side="top", fill="x", pady=10)
+        button = tk.Button(self, text="Next Question", command=lambda: controller.show_frame("PageFour"))
+        button.pack()
+
+
+# ***************************************************************************#
+
+class PageFour(tk.Frame):
+
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
+        label = tk.Label(self, text="Question Four", font=controller.title_font)
+        label.pack(side="top", fill="x", pady=10)
+        button = tk.Button(self, text="Next Question", command=lambda: controller.show_frame("PageFive"))
+        button.pack()
+
+
+# ***************************************************************************#
+
+class PageFive(tk.Frame):
+
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
+        label = tk.Label(self, text="Question Five", font=controller.title_font)
+        label.pack(side="top", fill="x", pady=10)
+        button = tk.Button(self, text="Next Question", command=lambda: controller.show_frame("PageSix"))
+        button.pack()
+
+
+# ***************************************************************************#
+
+class PageSix(tk.Frame):
+
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
+        label = tk.Label(self, text="Question Six", font=controller.title_font)
+        label.pack(side="top", fill="x", pady=10)
+        button = tk.Button(self, text="Next Question", command=lambda: controller.show_frame("PageSeven"))
+        button.pack()
+
+
+# ***************************************************************************#
+
+class PageSeven(tk.Frame):
+
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
+        label = tk.Label(self, text="Question Seven", font=controller.title_font)
+        label.pack(side="top", fill="x", pady=10)
+        button = tk.Button(self, text="Finish the Test", command=lambda: controller.show_frame("FinishedPage"))
+        button.pack()
+
+# ***************************************************************************#
+
+
+if __name__ == "__main__":
+    app = SampleApp()
+    app.mainloop()
+
+# ***************************************************************************#

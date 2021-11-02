@@ -1,6 +1,8 @@
+ ###Random Math Test###
+
 import tkinter as tk
 from tkinter import font as tkfont
-
+import random
 # ***************************************************************************#
 
 random_text = "sEkc beASt"
@@ -50,6 +52,7 @@ class SampleApp(tk.Tk):
 
 # ***************************************************************************#
 
+
 class StartPage(tk.Frame):
 
     def __init__(self, parent, controller):
@@ -72,15 +75,50 @@ class StartPage(tk.Frame):
 
 # ***************************************************************************#
 
+### Pythagorean Theorem ##
+pythagorean_triple_1 = [3,4,5]
+new_list = []
+n = random.randint(1,4)
+for i in pythagorean_triple_1:
+    new_list.append(i*n)
+print(new_list)
+
 class PageOne(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
-        label = tk.Label(self, text="Question One", font=controller.title_font)
-        label.pack(side="top", fill="x", pady=10)
-        button = tk.Button(self, text="Next Question", command=lambda: controller.show_frame("PageTwo"))
-        button.pack()
+        number = 1
+        question_one_label = tk.Label(self, text="Question {}".format(number), font=controller.title_font) #Question One
+        question_one_label.pack(side="top", fill="x", pady=10)
+        
+        question_one_text = tk.Label(self, text = "A triangle has a hypotenuse side length of {}, and another side length of {}".format(new_list[2], new_list[0]), padx = 10, pady = 5)
+        question_one_label = tk.Label(self, text = "What is the length of the other side?", padx = 10, pady = 5)
+        users_input = tk.Entry(self)
+        
+        def Submit():
+            data = users_input.get()
+            print(data)
+            users_input.destroy()
+            user_answer = tk.Label(self, text=data, font=controller.title_font)
+            user_answer.pack()
+            submit.destroy()
+            submit22 = tk.Button(self, text="submit", state='disabled')
+            submit22.pack()
+            button = tk.Button(self, text="Next Question", command=lambda: controller.show_frame("PageTwo"))
+            button.pack()
+
+            
+        submit = tk.Button(self, text="submit", command =lambda: Submit())
+        #button = tk.Button(self, text="Next Question", command=lambda: controller.show_frame("PageTwo"))
+        #question_one = tk.Label(self, text = "A triangle has a hypotenuse side length of {}, and another side length of {}".format(new_list[2], new_list[0]), padx = 10, pady = 5)
+        
+        
+        question_one_text.pack()
+        question_one_label.pack()
+        users_input.pack()
+        submit.pack()
+
 
 
 # ***************************************************************************#
@@ -90,10 +128,35 @@ class PageTwo(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
-        label = tk.Label(self, text="Question Two", font=controller.title_font)
-        label.pack(side="top", fill="x", pady=10)
-        button = tk.Button(self, text="Next Question", command=lambda: controller.show_frame("PageThree"))
-        button.pack()
+        number = 2
+        question_two_label = tk.Label(self, text = "Question {}".format(number), font = controller.title_font)
+        question_two_label.pack(side="top", fill="x", pady=10)
+        
+        question_one_text = tk.Label(self, text = "blah blah blah blah".format(new_list[2], new_list[0]), padx = 10, pady = 5)
+        question_one_label = tk.Label(self, text = "What is 69 divided by len(blah)?", padx = 10, pady = 5)
+        users_input = tk.Entry(self)
+
+        def Submit():
+            data = users_input.get()
+            print(data)
+            users_input.destroy()
+            user_answer = tk.Label(self, text=data, font=controller.title_font)
+            user_answer.pack()
+            submit.destroy()
+            submit22 = tk.Button(self, text="submit", state='disabled')
+            submit22.pack()           
+            button = tk.Button(self, text="Next Question", command=lambda: controller.show_frame("PageThree"))
+            button.pack()
+        
+        submit = tk.Button(self, text="submit", command =lambda: Submit())
+        #button = tk.Button(self, text="Next Question", command=lambda: controller.show_frame("PageTwo"))
+        #question_one = tk.Label(self, text = "A triangle has a hypotenuse side length of {}, and another side length of {}".format(new_list[2], new_list[0]), padx = 10, pady = 5)
+        
+        
+        question_one_text.pack()
+        question_one_label.pack()
+        users_input.pack()
+        submit.pack()
 
 
 # ***************************************************************************#
@@ -103,10 +166,35 @@ class PageThree(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
+        number = 3
         label = tk.Label(self, text="Question Three", font=controller.title_font)
         label.pack(side="top", fill="x", pady=10)
-        button = tk.Button(self, text="Next Question", command=lambda: controller.show_frame("PageFour"))
-        button.pack()
+
+        question_one_text = tk.Label(self, text = "blah blah blah blah".format(new_list[2], new_list[0]), padx = 10, pady = 5)
+        question_one_label = tk.Label(self, text = "What is 69 divided by len(blah)?", padx = 10, pady = 5)
+        users_input = tk.Entry(self)
+
+        def Submit():
+            data = users_input.get()
+            print(data)
+            users_input.destroy()
+            user_answer = tk.Label(self, text=data, font=controller.title_font)
+            user_answer.pack()
+            submit.destroy()
+            submit22 = tk.Button(self, text="submit", state='disabled')
+            submit22.pack()             
+            button = tk.Button(self, text="Next Question", command=lambda: controller.show_frame("PageFour"))
+            button.pack()
+        
+        submit = tk.Button(self, text="submit", command =lambda: Submit())
+        #button = tk.Button(self, text="Next Question", command=lambda: controller.show_frame("PageTwo"))
+        #question_one = tk.Label(self, text = "A triangle has a hypotenuse side length of {}, and another side length of {}".format(new_list[2], new_list[0]), padx = 10, pady = 5)
+        
+        
+        question_one_text.pack()
+        question_one_label.pack()
+        users_input.pack()
+        submit.pack()
 
 
 # ***************************************************************************#
@@ -118,8 +206,31 @@ class PageFour(tk.Frame):
         self.controller = controller
         label = tk.Label(self, text="Question Four", font=controller.title_font)
         label.pack(side="top", fill="x", pady=10)
-        button = tk.Button(self, text="Next Question", command=lambda: controller.show_frame("PageFive"))
-        button.pack()
+        question_one_text = tk.Label(self, text = "blah blah blah blah".format(new_list[2], new_list[0]), padx = 10, pady = 5)
+        question_one_label = tk.Label(self, text = "What is 69 divided by len(blah)?", padx = 10, pady = 5)
+        users_input = tk.Entry(self)
+
+        def Submit():
+            data = users_input.get()
+            print(data)
+            users_input.destroy()
+            user_answer = tk.Label(self, text=data, font=controller.title_font)
+            user_answer.pack()
+            submit.destroy()
+            submit22 = tk.Button(self, text="submit", state='disabled')
+            submit22.pack()            
+            button = tk.Button(self, text="Next Question", command=lambda: controller.show_frame("PageFive"))
+            button.pack()
+        
+        submit = tk.Button(self, text="submit", command =lambda: Submit())
+        #button = tk.Button(self, text="Next Question", command=lambda: controller.show_frame("PageTwo"))
+        #question_one = tk.Label(self, text = "A triangle has a hypotenuse side length of {}, and another side length of {}".format(new_list[2], new_list[0]), padx = 10, pady = 5)
+        
+        
+        question_one_text.pack()
+        question_one_label.pack()
+        users_input.pack()
+        submit.pack()
 
 
 # ***************************************************************************#
@@ -131,8 +242,31 @@ class PageFive(tk.Frame):
         self.controller = controller
         label = tk.Label(self, text="Question Five", font=controller.title_font)
         label.pack(side="top", fill="x", pady=10)
-        button = tk.Button(self, text="Next Question", command=lambda: controller.show_frame("PageSix"))
-        button.pack()
+        question_one_text = tk.Label(self, text = "blah blah blah blah".format(new_list[2], new_list[0]), padx = 10, pady = 5)
+        question_one_label = tk.Label(self, text = "What is 69 divided by len(blah)?", padx = 10, pady = 5)
+        users_input = tk.Entry(self)
+
+        def Submit():
+            data = users_input.get()
+            print(data)
+            users_input.destroy()
+            user_answer = tk.Label(self, text=data, font=controller.title_font)
+            user_answer.pack()
+            submit.destroy()
+            submit22 = tk.Button(self, text="submit", state='disabled')
+            submit22.pack()             
+            button = tk.Button(self, text="Next Question", command=lambda: controller.show_frame("PageSix"))
+            button.pack()
+        
+        submit = tk.Button(self, text="submit", command =lambda: Submit())
+        #button = tk.Button(self, text="Next Question", command=lambda: controller.show_frame("PageTwo"))
+        #question_one = tk.Label(self, text = "A triangle has a hypotenuse side length of {}, and another side length of {}".format(new_list[2], new_list[0]), padx = 10, pady = 5)
+        
+        
+        question_one_text.pack()
+        question_one_label.pack()
+        users_input.pack()
+        submit.pack()
 
 
 # ***************************************************************************#
@@ -144,8 +278,31 @@ class PageSix(tk.Frame):
         self.controller = controller
         label = tk.Label(self, text="Question Six", font=controller.title_font)
         label.pack(side="top", fill="x", pady=10)
-        button = tk.Button(self, text="Next Question", command=lambda: controller.show_frame("PageSeven"))
-        button.pack()
+        question_one_text = tk.Label(self, text = "blah blah blah blah".format(new_list[2], new_list[0]), padx = 10, pady = 5)
+        question_one_label = tk.Label(self, text = "What is 69 divided by len(blah)?", padx = 10, pady = 5)
+        users_input = tk.Entry(self)
+
+        def Submit():
+            data = users_input.get()
+            print(data)
+            users_input.destroy()
+            user_answer = tk.Label(self, text=data, font=controller.title_font)
+            user_answer.pack()
+            submit.destroy()
+            submit22 = tk.Button(self, text="submit", state='disabled')
+            submit22.pack()             
+            button = tk.Button(self, text="Next Question", command=lambda: controller.show_frame("PageSeven"))
+            button.pack()
+        
+        submit = tk.Button(self, text="submit", command =lambda: Submit())
+        #button = tk.Button(self, text="Next Question", command=lambda: controller.show_frame("PageTwo"))
+        #question_one = tk.Label(self, text = "A triangle has a hypotenuse side length of {}, and another side length of {}".format(new_list[2], new_list[0]), padx = 10, pady = 5)
+        
+        
+        question_one_text.pack()
+        question_one_label.pack()
+        users_input.pack()
+        submit.pack()
 
 
 # ***************************************************************************#
@@ -156,9 +313,14 @@ class PageSeven(tk.Frame):
         tk.Frame.__init__(self, parent)
         self.controller = controller
         label = tk.Label(self, text="Question Seven", font=controller.title_font)
-        label.pack(side="top", fill="x", pady=10)
-        button = tk.Button(self, text="Finish the Test", command=lambda: controller.show_frame("FinishedPage"))
-        button.pack()
+
+
+        question_one_text = tk.Label(self, text = "Answers:".format(new_list[2], new_list[0]), padx = 10, pady = 5)
+        question_one_label = tk.Label(self, text = "69,420", padx = 10, pady = 5)
+
+        
+        question_one_text.pack()
+        question_one_label.pack()
 
 # ***************************************************************************#
 
@@ -166,5 +328,7 @@ class PageSeven(tk.Frame):
 if __name__ == "__main__":
     app = SampleApp()
     app.mainloop()
+print("hello")
 
 # ***************************************************************************#
+

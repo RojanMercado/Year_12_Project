@@ -1,4 +1,4 @@
-  ###Random Math Test###
+ ###Random Math Test###
 
 import tkinter as tk
 from tkinter import font as tkfont
@@ -20,6 +20,9 @@ def one():
     one = 1
 def gap():
     gap = "gap"
+ans = []
+answer_list = []
+score = 0
 # ***************************************************************************#
 def negative(b,c):
     global ne_po
@@ -79,11 +82,11 @@ class StartPage(tk.Frame):
         message_text = "Welcome! This is my maths test. Try it out for yourself!"
         message_label = tk.Label(self, text=message_text)
         message_label.pack(padx=10, pady=5, side="top")
-
+        
         # Button to
         button1 = tk.Button(self, text="Play", command=lambda: controller.show_frame("PageOne"))
         button1.pack()
-
+        
 # ***************************************************************************#
 
 ### Pythagorean Theorem ##
@@ -97,6 +100,7 @@ print(new_list)
 class PageOne(tk.Frame):
     
     def __init__(self, parent, controller):
+        
         tk.Frame.__init__(self, parent)
         self.controller = controller
         number = 1
@@ -108,8 +112,12 @@ class PageOne(tk.Frame):
         users_input = tk.Entry(self)
         
         def Submit():
+            global ans, answer_list
             data1 = users_input.get()
-            print(data1)
+            ans.append(data1)
+            answer_list.append(new_list[1])
+
+            
             users_input.destroy()
             user_answer = tk.Label(self, text=data1, font=controller.title_font)
             user_answer.pack()
@@ -118,7 +126,7 @@ class PageOne(tk.Frame):
             submit22.pack()
             button = tk.Button(self, text="Next Question", command=lambda: controller.show_frame("PageTwo"))
             button.pack()
-            
+        
         submit = tk.Button(self, text="submit", command =lambda: Submit())
         #button = tk.Button(self, text="Next Question", command=lambda: controller.show_frame("PageTwo"))
         #question_one = tk.Label(self, text = "A triangle has a hypotenuse side length of {}, and another side length of {}".format(new_list[2], new_list[0]), padx = 10, pady = 5)
@@ -131,7 +139,7 @@ class PageOne(tk.Frame):
 # ***************************************************************************#
 
 class PageTwo(tk.Frame):
-
+    
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
@@ -172,7 +180,11 @@ class PageTwo(tk.Frame):
         
         def Submit():
             data2 = users_input.get()
-            print(data2)
+            global ans, answer_list
+            ans.append(data2)
+            answer_list.append(x)
+            
+                
             users_input.destroy()
             user_answer = tk.Label(self, text=data2, font=controller.title_font)
             user_answer.pack()
@@ -258,12 +270,15 @@ class PageThree(tk.Frame):
 
     
         question_one_text = tk.Label(self, text = question_three_text, padx = 10, pady = 5)
-        question_one_label = tk.Label(self, text = "Solve for x (only one root)", padx = 10, pady = 5)
+        question_one_label = tk.Label(self, text = "Solve for lowest value of x (only one root)", padx = 10, pady = 5)
         users_input = tk.Entry(self)
 
         def Submit():
             data3 = users_input.get()
-            print(data3)
+            global ans, answer_list
+            ans.append(data3)
+            answer_list.append(THREE_first_index)
+            
             users_input.destroy()
             user_answer = tk.Label(self, text=data3, font=controller.title_font)
             user_answer.pack()
@@ -289,9 +304,11 @@ class PageThree(tk.Frame):
 class PageFour(tk.Frame):
 
     def __init__(self, parent, controller):
-        global introductory_text
+        global introductory_text 
         global second_introductory_text
-        global question_five_text
+        global question_five_text_QUESTION
+        global FIVE_DAD_AGE
+        global y
         
         tk.Frame.__init__(self, parent)
         self.controller = controller
@@ -379,10 +396,11 @@ class PageFour(tk.Frame):
         FIVE_DAD_COUNTER = 0
         
         if ancestor == 0:
-            question_five_text = ("2) How old is {} in {}?".format(FIVE_RANDOM_dad_name, FIVE_random_year))
+            question_five_text_QUESTION = ("2) How old is {} in {}?".format(FIVE_RANDOM_dad_name, FIVE_random_year))
+            
         if ancestor == 1:
-            question_five_text = ("2) How old would {} be in {} (if he was somehow still alive)?".format(FIVE_RANDOM_dad_name, FIVE_random_year))
-    
+            question_five_text_QUESTION = ("2) How old would {} be in {} (if he was somehow still alive)?".format(FIVE_RANDOM_dad_name, FIVE_random_year))
+            
         
         question_four_label = tk.Label(self, text = introductory_text, padx = 10, pady = 5)
         second_question_four_text = tk.Label(self, text = second_introductory_text, padx = 10, pady = 5)
@@ -392,7 +410,11 @@ class PageFour(tk.Frame):
 
         def Submit():
             data4 = users_input.get()
-            print(data4)
+            global ans, answer_list, y
+            ans.append(data4)
+            answer_list.append(x)
+            answer_list.append(y)
+            
             users_input.destroy()
             user_answer = tk.Label(self, text=data4, font=controller.title_font)
             user_answer.pack()
@@ -414,7 +436,6 @@ class PageFour(tk.Frame):
         users_input.pack()
         submit.pack()
 
-
 # ***************************************************************************#
 
 class PageFive(tk.Frame):
@@ -429,19 +450,39 @@ class PageFive(tk.Frame):
         question_five_text = tk.Label(self, text = introductory_text, padx = 10, pady = 5)
         second_question_five_text = tk.Label(self, text = second_introductory_text, padx = 10, pady = 5)
         
-        question_five_label = tk.Label(self, text = question_five_text, padx = 10, pady = 5)
+        question_five_label = tk.Label(self, text = question_five_text_QUESTION, padx = 10, pady = 5)
         users_input = tk.Entry(self)
         
         def Submit():
+            print("question_five_text = {}".format(question_five_text))
             data5 = users_input.get()
-            print(data5)
+            global ans
+            ans.append(data5)
+               
             users_input.destroy()
             user_answer = tk.Label(self, text=data5, font=controller.title_font)
             user_answer.pack()
             submit.destroy()
             submit22 = tk.Button(self, text="submit", state='disabled')
-            submit22.pack()             
-            button = tk.Button(self, text="Next Question", command=lambda: controller.show_frame("PageSix"))
+            submit22.pack()
+            print(answer_list)
+            def answer_page():
+                controller.show_frame("PageSix")
+                print(ans)
+                print(answer_list)
+                global score
+                for i in range(len(answer_list)):
+                    if ans[i] == str(answer_list[i]):
+                        globals()[i].config(text="You got question {} correct".format(i))
+                        print("you got question {} correct".format(i))
+                        score += 1
+                global total
+                total.config(text="{}/5".format(score))
+                
+                global title
+                title.config(text="Your answers:".format(ans[0]))
+
+            button = tk.Button(self, text="Next Question", command= answer_page)
             button.pack()
         
         submit = tk.Button(self, text="submit", command =lambda: Submit())
@@ -457,30 +498,37 @@ class PageFive(tk.Frame):
         submit.pack()
 
 # ***************************************************************************#
-
+    
+    text="{}/5".format(score)
 class PageSix(tk.Frame):
 
     def __init__(self, parent, controller):
+        
         tk.Frame.__init__(self, parent)
         self.controller = controller
-        label = tk.Label(self, text="Answers", font=controller.title_font)
+                
+        global title
+        title = tk.Label(self, text="unchanged")
+        title.pack()
 
+        for i in range(5):
+            globals()[i] = tk.Label(self, text="You got question #{} incorrect!!".format(i+1))
+            globals()[i].pack()
+        global score, total
+        total = tk.Label(self, text="EMPTY")
+        total.pack()
 
-        question_one_text = tk.Label(self, text = "Answers:".format(new_list[2], new_list[0]), padx = 10, pady = 5)
-        question_one_label = tk.Label(self, text = "69,420", padx = 10, pady = 5)
 
         
-        question_one_text.pack()
-        question_one_label.pack()
-
+        
 # ***************************************************************************#
 
+                
 
 if __name__ == "__main__":
     app = SampleApp()
     app.mainloop()
-print("hello")
-
 # ***************************************************************************#
+
 
 
